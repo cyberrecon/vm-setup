@@ -1,3 +1,4 @@
 A script to install the software necessary for the SaaS Class.
 
-(Note: this script is outdated for version 0.9.0)
+2013-02-17 Added Rails 3.2, ImageMagick, and spree
+

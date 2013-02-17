@@ -20,28 +20,31 @@ sudo apt-get install -y chromium-browser
 sudo apt-get install -y libreadline6-dev
 
 # install ruby
+# changed ruby from 1.9.2 to 1.9.3 - cd
 cd ~/
-wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.2-p290.tar.gz
-tar -zxvf ruby-1.9.2-p290.tar.gz
-cd ruby-1.9.2-p290
+wget http://ftp.ruby-lang.org/pub/ruby/1.9/ruby-1.9.3-p385.tar.gz
+tar -zxvf ruby-1.9.3-p385.tar.gz
+cd ruby-1.9.3-p385
 ./configure
 make
 sudo make install
 cd ..
-rm -rf ruby-1.9.2-p290/ ruby-1.9.2-p290.tar.gz
+rm -rf ruby-1.9.3-p385/ ruby-1.9.3-p385.tar.gz
 
 # install rubygems
+# cahnged gem 1.8.10 to 1.8;25
 cd ~/
-wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.10.tgz
-tar -zxvf rubygems-1.8.10.tgz
-cd rubygems-1.8.10
+wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.25.tgz
+tar -zxvf rubygems-1.8.25.tgz
+cd rubygems-1.8.25
 sudo ruby setup.rb
 cd ..
-rm -rf rubygems-1.8.10/ rubygems-1.8.10.tgz
+rm -rf rubygems-1.8.25/ rubygems-1.8.25.tgz
 
 # isntall a bunch of gems
 cd ~/
-sudo gem install rails -v 3.1.0
+# sudo gem install rails -v 3.1.0
+sudo gem install rails -v 3.2.7
 sudo gem install rspec-rails -v 2.6.1
 sudo gem install cucumber -v 1.0.6
 sudo gem install nokogiri -v 1.5.0
@@ -204,7 +207,8 @@ git checkout -b ch_ruby_intro origin/ch_ruby_intro
 bundle install
 
 # rails hack to add therubyracer to the default gemfile
-cd /usr/local/lib/ruby/gems/1.9.1/gems/railties-3.1.0/lib/rails
+# cd /usr/local/lib/ruby/gems/1.9.1/gems/railties-3.1.0/lib/rails
+cd /usr/local/lib/ruby/gems/1.9.1/gems/railties-3.2.7/lib/rails
 sudo chmod 777 generators/
 cd generators/
 sudo chmod 777 app_base.rb
@@ -220,3 +224,18 @@ cd ~/Documents
 cd ~/
 gconftool -s --type bool /apps/update-notifier/auto_launch false
 gconftool -s --type bool /apps/update-notifier/no_show_notifications true
+
+# install ImageMagick
+cd ~/
+wget http://www.imagemagick.org/download/ImageMagick.tar.gz
+tar zxvf ImageMagick.tar.gz
+cd ImageMagick-6.8.3-1/
+./configure
+make
+sudo make install
+sudo ldconfig /usr/local/lib
+/usr/local/bin/convert logo: logo.gif
+# for a more comprehensive test run make check
+# make check
+
+sudo gem install spree
